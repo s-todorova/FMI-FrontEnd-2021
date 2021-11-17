@@ -118,3 +118,6 @@ input:focus {
     margin-right: 1rem;
 }
 
+.actions a:hover {
+    color: #6f81ec;
+}
