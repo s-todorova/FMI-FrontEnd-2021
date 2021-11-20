@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/aefb03f2f1.js" crossorigin="anonymous"></script>
+</head>
+<body class="full">
+    <header class="header">
+
+        <h1 class="logo">Flutter</h1>
+        <div class="search-wrapper">
+            <input class="search" type="text" name="post" class="post-text" placeholder="Search">
+            <i class="fas fa-search"></i>
+        </div>
+        
+    </header>
+    <div class="wrapper">
+        <section class="profile">
+            <div class="about">
+                <img src="./images/profile.jpg" alt="profile picture" class="profile-pic">
+                <h3>Martin Hristov</h3>
+            </div>
+            <div class="info">
+                <ul class = "info-items">
+                    <div class="start">
+                        <li>Posts </br><span>1</span></li>
+                        <li>Reactions </br> <span>7</span></li>   
+                    </div>
+                    <div class="end">
+                        <li><button type="submit">Log Out</button></li>
+                    </div>
+                </ul>
+            </div>
+        </section>
+        <section class="posts">
+            <div class="make-post">
+                <img src="./images/profile.jpg" alt="profile icon" class="profile-icon">
+                <div class="post-textfield">
+                  <input type="text" name="post" class="post-text" placeholder="Say something">  
+                  <i class="fas fa-comment-alt"></i>
+                </div>
+                
+            </div>
+
+            <div class="post-wrap">
+                <div class="post-content">
+                    <img src="./images/profile.jpg" alt="profile icon" class="profile-icon">
+                    <div class="post">
+                        <div class="poster-info">
+                            <h2>Ivan Ivanov</h2>
+                            <span>&#9679 0 seconds ago</span>
+                        </div>
+                        
+                        <i class="fas fa-xmark"></i>
+                        <p class="post-textcontent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, eos assumenda, architecto impedit a facilis quod nesciunt mollitia soluta veniam aliquid dicta ratione similique eaque.</p>
+                    </div>
+                </div>           
+                
+                <div class="reactions">
+                    <div class="reaction">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span class="reactions-count">5</span>
+                    </div>
+                    <div class="reaction">
+                        <i class="fas fa-thumbs-down"></i>
+                        <span class="reactions-count">3</span>
+                    </div>
+                </div>
+            </div>
+  
+            <div class="post-wrap">
+                <div class="post-content">
+                    <img src="./images/profile.jpg" alt="profile icon" class="profile-icon">
+                    <div class="post">
+                        <div class="poster-info">
+                            <h2>Martin</h2>
+                            <span>&#9679 Last month</span>
+                        </div>
+                        
+                        <i class="fas fa-xmark"></i>
+                        <p class="post-textcontent">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                    </div>
+                </div>
+                
+                <div class="reactions">
+                    <div class="reaction">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span class="reactions-count">3</span>
+                    </div>
+                    <div class="reaction">
+                        <i class="fas fa-thumbs-down"></i>
+                        <span class="reactions-count">0</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    
+</body>
+</html>
