@@ -4,3 +4,4 @@
 ### iPad 768X1024
 ![plot](./images/768X1024-iPad.jpg)
 ### iPhone X 375x812
+![plot](./images/375x812-iPhoneX.jpg)
