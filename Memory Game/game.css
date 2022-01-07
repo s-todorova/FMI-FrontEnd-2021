@@ -1,0 +1,15 @@
+:root {
+  --bg: #191919;
+  --gold: #d4b982;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  font-size: 16px;
+}
