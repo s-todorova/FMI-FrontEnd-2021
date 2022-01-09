@@ -19,5 +19,78 @@
     />
     <script src="./game.js" type="module"></script>
   </head>
-  <body class="center-content"></body>
+  <body>
+    <header class="header">
+      <section class="timer">Time: <span id="timer">0min 0s</span></section>
+      <section class="actions">
+        <button id="start-btn" class="btn btn--primary">Start</button>
+        <button id="reset-btn" class="btn btn--secondary">Restart</button>
+      </section>
+    </header>
+    <!-- <main> -->
+    <ul id="deck" class="deck">
+      <!-- <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li>
+      <li class="card">
+        <img src="./images/back.jpg" alt="" />
+      </li> -->
+    </ul>
+    <!-- </main> -->
+    <section id="modal" class="modal">
+      <div class="modal-content col-1rem">
+        <span class="close">&times;</span>
+        <div class="modal-info">
+          <h2>Thank you for playing, NAME!</h2>
+          <p class="score-info">Completion time: <span>0min 0s</span></p>
+          <div class="modal-btns col-1rem">
+            <button class="btn btn--primary">Play again</button>
+            <button class="btn btn--secondary">Leaderboard</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

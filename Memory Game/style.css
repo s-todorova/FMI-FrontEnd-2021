@@ -165,41 +165,6 @@ h2 {
 }
 
 /* Modal Content/Box */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.493);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 1.5rem;
-  border: 5px solid rgb(141, 21, 21);
-  width: 40%;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 1.2rem;
-}
-.close {
-  color: #aaa;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
 
 /* 768 and down */
 @media only screen and (max-width: 768px) {
