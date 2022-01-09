@@ -27,26 +27,6 @@ const database = getDatabase(app);
 const dbRef = ref(database, "users");
 const lstorage = window.localStorage;
 
-//------FOR LATER USE: MODAL-----
-
-const modal = document.getElementById("modal");
-const closeModal = document.getElementsByClassName("close")[0];
-const p = document.getElementById("error-msg");
-
-const displayFirebaseError = (errorcode) => {
-    modal.style.display = "block";
-    let errormessage = '';
-    if(errorcode === 'auth/email-already-in-use'){
-        errormessage = "An account with this email already exists!";
-    }
-    p.innerText = errormessage;
-};
-
-closeModal.onclick = function() { //close modal
-    modal.style.display = "none";
-}
-//----END MODAL-------------
-
 //FROM VALIDATION
 const validPass = (pass,confirm) => {
     if(pass != confirm) {
@@ -95,6 +75,7 @@ form.addEventListener("submit", (event) => {
             });
             clearErrors(pass,email);
             lstorage.setItem("user",usernameValue);
+            lstorage.setItem("uid",uid);
             // if all ok:
             window.location.href = 'game.html';
             //

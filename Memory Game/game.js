@@ -1,5 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import { getDatabase, set, ref, child, get  } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 const firebaseConfig = {
@@ -13,12 +12,12 @@ const firebaseConfig = {
 };
 
   // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const database = getDatabase(app);
-const lstorage = window.localStorage;
-const currUser = lstorage.getItem("user");
-//TODO: ADD MODAL, CONNECT TO FIREBASE
+
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const lstorage = window.localStorage;
+  const currUser = lstorage.getItem("user");
+  //console.log(lstorage);
 //------------------------------------------
 const deck = document.getElementById("deck");
 const modal = document.getElementById("modal");
@@ -26,10 +25,14 @@ const modal = document.getElementById("modal");
 const start = document.getElementById("start-btn");
 const restart = document.getElementById("reset-btn");
 
+const modalRestart = document.getElementById("modal-restart");
+const leaderboard = document.getElementById("modal-leaderboard")
+
 const timeCounter = document.getElementById("timer");
 let time;
 let minutes = 0;
 let seconds = 0;
+let wholeTime = 0;
 let timeStart = false;
 
 let opened = [];
@@ -48,7 +51,7 @@ let cardArr = [
 
 //---START AND END GAME----
 function startGame() {
-  console.log("STARTED");
+
 	const shuffledDeck = shuffle(cardArr);
 	for (let i = 0; i < shuffledDeck.length; i++) {
 		
@@ -61,26 +64,32 @@ function startGame() {
 		deck.appendChild(li);
 	}
 }
-//startGame();
 
 const winGame = () => {
 	if (matched.length === 16) {
 		stopTimer();
-		//AddStats();
-		//displayModal();
+    updateDatabase();
+    modalStats();
+		modalShow();
 	}
+}
+const userId = lstorage.getItem("uid");
+
+function updateDatabase() {
+    //const db = getDatabase();
+    let currScore = minutes*60+seconds;
+    let path = `users/${userId}/score`
+    set(ref(database, 'users/' + userId + '/score'), currScore);
+  
 }
 //----------------------------
 
 deck.addEventListener("click", function(e) {	
-	console.log(e.target + " Was clicked");
-
 	flip(e.target);	
 });
 
 const flip = (card) => {
   card.classList.add("flip");
-  console.log("FLIPPED");
   addToOpened(card);
 }
  
@@ -144,7 +153,6 @@ const clearDeck = () => { //helper
 	}
 }
 function reset() {
-  console.log("RESET");
 	stopTimer();
 	timeStart = false;
 	seconds = 0;
@@ -155,7 +163,7 @@ function reset() {
 	opened = [];
 
 	clearDeck();
-	startGame();
+	//startGame();
 }
 //-------------------------------
 
@@ -176,18 +184,45 @@ const stopTimer = () => {
 }
 //-----------------
 
+//-------MODAL----------
+const modalShow = () => {
+  modal.style.display= "block";  
+}
 
+const modalClose = document.getElementById("modal-close");
+modalClose.onclick = function() {
+  modal.style.display = "none";
+};
+
+modalRestart.addEventListener("click", (e) => {
+  //clearDeck();
+  reset();
+  modal.style.display = "none";
+})
+leaderboard.addEventListener("click", (e) => {
+  window.location.href = 'leaderboard.html';
+  modal.style.display = "none";
+})
+
+function modalStats() {
+  const greeting = document.getElementById("endgame");
+  const score = document.getElementById("score");
+  greeting.innerText = `Thank you for playing, ${currUser}!`;
+  score.innerText = `${minutes}min ${seconds}s`;
+}
+
+//--------------------------
 
 start.addEventListener('click',(e) => {
   if (timeStart === false) {
     timeStart = true; 
     updateTimer();
   }
-  console.log(e.target);
   startGame();
 } );
 
 restart.addEventListener('click',(e) => {
-  console.log(e.target);
   reset();
+	startGame();
+
 } );

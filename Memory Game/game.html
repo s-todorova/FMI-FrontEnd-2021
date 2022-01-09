@@ -81,13 +81,19 @@
     <!-- </main> -->
     <section id="modal" class="modal">
       <div class="modal-content col-1rem">
-        <span class="close">&times;</span>
+        <span id="modal-close" class="close">&times;</span>
         <div class="modal-info">
-          <h2>Thank you for playing, NAME!</h2>
-          <p class="score-info">Completion time: <span>0min 0s</span></p>
+          <h2 id="endgame">Thank you for playing, NAME!</h2>
+          <p class="score-info">
+            Completion time: <span id="score">0min 0s</span>
+          </p>
           <div class="modal-btns col-1rem">
-            <button class="btn btn--primary">Play again</button>
-            <button class="btn btn--secondary">Leaderboard</button>
+            <button id="modal-restart" class="btn btn--primary">
+              Play again
+            </button>
+            <button id="modal-leaderboard" class="btn btn--secondary">
+              Leaderboard
+            </button>
           </div>
         </div>
       </div>

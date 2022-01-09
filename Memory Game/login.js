@@ -39,6 +39,8 @@ form.addEventListener("submit", (event) => {
         get(child(dbRef, `users/${uid}`)).then((snapshot) => {
           if (snapshot.exists()) {
             lstorage.setItem("user",snapshot.val().username);
+            lstorage.setItem("uid",uid);
+
             window.location.href = 'game.html';
           }
         }).catch((error) => {
