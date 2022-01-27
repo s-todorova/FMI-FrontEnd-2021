@@ -17,7 +17,6 @@ const firebaseConfig = {
   const database = getDatabase(app);
   const lstorage = window.localStorage;
   const currUser = lstorage.getItem("user");
-  //console.log(lstorage);
 //------------------------------------------
 const deck = document.getElementById("deck");
 const modal = document.getElementById("modal");
@@ -32,7 +31,6 @@ const timeCounter = document.getElementById("timer");
 let time;
 let minutes = 0;
 let seconds = 0;
-let wholeTime = 0;
 let timeStart = false;
 
 let opened = [];
@@ -60,7 +58,6 @@ function startGame() {
 		const img = document.createElement("img");
 		li.appendChild(img);
 		img.setAttribute("src", `./images/${shuffledDeck[i]}`);
-   //https://github.com/st140101/FMI-FrontEnd-2021/tree/master/Memory%20Game/images/+ "?raw=true"
 		deck.appendChild(li);
 	}
 }
@@ -76,7 +73,6 @@ const winGame = () => {
 const userId = lstorage.getItem("uid");
 
 function updateDatabase() {
-    //const db = getDatabase();
     let currScore = minutes*60+seconds;
     let path = `users/${userId}/score`
     set(ref(database, 'users/' + userId + '/score'), currScore);
@@ -85,7 +81,10 @@ function updateDatabase() {
 //----------------------------
 
 deck.addEventListener("click", function(e) {	
-	flip(e.target);	
+  //console.log(e.target.nodeName);
+  if (e.target.nodeName === "LI") {
+	  flip(e.target);	
+  }
 });
 
 const flip = (card) => {
@@ -223,6 +222,10 @@ start.addEventListener('click',(e) => {
 
 restart.addEventListener('click',(e) => {
   reset();
+  if (timeStart === false) {
+    timeStart = true; 
+    updateTimer();
+  }
 	startGame();
 
 } );
