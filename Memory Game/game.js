@@ -76,6 +76,7 @@ function updateDatabase() {
     let currScore = minutes*60+seconds;
     let path = `users/${userId}/score`
     set(ref(database, 'users/' + userId + '/score'), currScore);
+    lstorage.setItem("score",currScore);
   
 }
 //----------------------------
@@ -208,6 +209,7 @@ function modalStats() {
   const score = document.getElementById("score");
   greeting.innerText = `Thank you for playing, ${currUser}!`;
   score.innerText = `${minutes}min ${seconds}s`;
+
 }
 
 //--------------------------

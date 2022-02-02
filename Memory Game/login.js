@@ -23,7 +23,7 @@ const pass = document.getElementById("pass-login");
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
-    
+    console.log("clicked login");
     const emailValue = email.value.trim();
     const passValue = pass.value.trim();
 

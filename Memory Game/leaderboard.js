@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getDatabase, onValue, ref, child, get  } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+import { getDatabase, onValue, ref, child, get, onChildAdded, onChildChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB2l5uVoPrlYEsl2TK6Qg41jL_BqBok108",
@@ -24,36 +24,30 @@ const scoreboard = document.getElementById("scoreboard");
 //----get scores----
 const db = getDatabase();
 const scoreArray = [];
-const getUIDS = () => {
-    const uidRef = ref(db, 'users/');
-    onValue(uidRef, (snapshot) => {
-    const data = snapshot.val();
-    for (var key in data) {
-        getscores(key);
-    }
-    });
-  }
 
-  //-----TODO-FIX MULTIPLICATION AND FORMAT DATA
 
-const getscores = (uid) => {
-    const uidRef = ref(db, 'users/' + uid);
-    onValue(uidRef, (snapshot) => {
-    const data = snapshot.val().score;
-    const name = snapshot.val().username;
-    scoreArray.push({name,data});
-    scoreArray.sort(function(a, b) { return a.data - b.data })
-    scoreArray.forEach((el)=>{
-        updateList(el.name,el.data);
-    })
-    console.log(scoreArray);
-    });
-}
-getUIDS();
+
+const dataRef = ref(database,"users");
+onChildAdded(dataRef,(data) => {
+    //console.log(data.val());
+    scoreArray.push(data.val());
+    updateList(data.val().username, data.val().score);
+})
+
+
 console.log(scoreArray);
+
+// onChildChanged(dataRef,(data) => {
+//     console.log(data.val());
+//     //updateList(data.val().username, data.val().score);
+// })
+
+// Array.prototype.slice.call(scoreboard.children)
+//   .map(function (x) { return scoreboard.removeChild(x); })
+//   .sort(function (x, y) { return /*logic */; })
+//   .forEach(function (x) { scoreboard.appendChild(x); });
+
 //---------------
-console.log(scoreArray.length)
-//add sorting of scores
 //---------------
 const updateList = (username,score) => {
     const li = document.createElement("li");
@@ -62,6 +56,4 @@ const updateList = (username,score) => {
         li.classList.add("user-score");
     }
     scoreboard.appendChild(li);
-    //<li>lorem: <span>0min 2sec</span></li>
 };
-
