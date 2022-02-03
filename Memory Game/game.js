@@ -156,7 +156,7 @@ function reset() {
 	timeStart = false;
 	seconds = 0;
 	minutes = 0;
-  timeCounter.innerHTML = `Time: 0min 0s` ;
+  timeCounter.innerHTML = `0min 0s` ;
 	
 	matched = [];
 	opened = [];
@@ -173,7 +173,7 @@ const updateTimer = () => {
 				minutes++;
 				seconds = 0;
 			}
-		timeCounter.innerHTML = `Time: ${minutes}min ${seconds}s` ;
+		timeCounter.innerHTML = `<span>${minutes}min ${seconds}s</span>` ;
 	}, 1000);
 }
 

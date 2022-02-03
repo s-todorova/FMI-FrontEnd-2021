@@ -36,7 +36,7 @@ body {
   top: 1.7rem;
   left: 0;
   height: 2px;
-  width: 7.2em;
+  width: 4.5em;
   background: linear-gradient(270deg, #ddc491, #946a15);
   background-size: 400% 400%;
 
@@ -257,5 +257,12 @@ img {
 @media only screen and (max-width: 730px) {
   .deck {
     width: 90%;
+  }
+}
+
+/* No less than 731, no greater than 1030px */
+@media (min-width: 731px) and (max-width: 1030px) {
+  .deck {
+    width: 80%;
   }
 }
