@@ -82,7 +82,6 @@ function updateDatabase() {
 //----------------------------
 
 deck.addEventListener("click", function(e) {	
-  //console.log(e.target.nodeName);
   if (e.target.nodeName === "LI") {
 	  flip(e.target);	
   }
@@ -147,7 +146,7 @@ function shuffle(array) {
 }
 
 //-----RESET-----
-const clearDeck = () => { //helper
+const clearDeck = () => {
 	while (deck.hasChildNodes()) {
 		deck.removeChild(deck.firstChild);
 	}
@@ -163,7 +162,6 @@ function reset() {
 	opened = [];
 
 	clearDeck();
-	//startGame();
 }
 //-------------------------------
 

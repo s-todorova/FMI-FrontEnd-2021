@@ -24,7 +24,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const database = getDatabase(app);
-const dbRef = ref(database, "users");
 const lstorage = window.localStorage;
 
 //FROM VALIDATION
@@ -76,9 +75,7 @@ form.addEventListener("submit", (event) => {
             clearErrors(pass,email);
             lstorage.setItem("user",usernameValue);
             lstorage.setItem("uid",uid);
-            // if all ok:
             window.location.href = 'game.html';
-            //
         })
         .catch((error) => {
             handleError(error.code);

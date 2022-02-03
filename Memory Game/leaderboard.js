@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getDatabase, onValue, ref, child, get, onChildAdded, onChildChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+import { getDatabase, ref, onChildAdded, onChildChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB2l5uVoPrlYEsl2TK6Qg41jL_BqBok108",
@@ -17,43 +17,44 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const lstorage = window.localStorage;
 const currUser = lstorage.getItem("user");
-//   console.log(currUser);
-
-const scoreboard = document.getElementById("scoreboard"); 
+const scoreboard = document.getElementById("scoreboard");
 
 //----get scores----
-const db = getDatabase();
 const scoreArray = [];
-
-
 
 const dataRef = ref(database,"users");
 onChildAdded(dataRef,(data) => {
-    //console.log(data.val());
     scoreArray.push(data.val());
-    updateList(data.val().username, data.val().score);
-})
+    scoreArray.sort((a,b) => a.score - b.score);
+    updateUIList();
+});
 
+onChildChanged(dataRef,(data) => {
+    console.log(data.val());
+    const idx = scoreArray.indexOf((element) => element.username === data.val().username);
+    if (idx < 0) { 
+        return;
+    }
+    scoreArray[idx] = data.val();
+    updateUIListAtIndex(idx);
+});
 
-console.log(scoreArray);
-
-// onChildChanged(dataRef,(data) => {
-//     console.log(data.val());
-//     //updateList(data.val().username, data.val().score);
-// })
-
-// Array.prototype.slice.call(scoreboard.children)
-//   .map(function (x) { return scoreboard.removeChild(x); })
-//   .sort(function (x, y) { return /*logic */; })
-//   .forEach(function (x) { scoreboard.appendChild(x); });
-
-//---------------
-//---------------
-const updateList = (username,score) => {
+const dataToElement = (data) => {
     const li = document.createElement("li");
-    li.innerHTML = `${username}: <span>${score}</span>`;
-    if(username===currUser){
+    li.innerHTML = `${data.username}: <span>${data.score}</span>`;
+    if (data.username === currUser){
         li.classList.add("user-score");
     }
-    scoreboard.appendChild(li);
+    return li;
+};
+
+const updateUIList = () => {
+    const newChildren = scoreArray.map(dataToElement);
+    scoreboard.replaceChildren(...newChildren);
+};
+
+const updateUIListAtIndex = (idx) => {
+    const element = scoreboard.children[idx];
+    const newElement = dataToElement(scoreArray[idx]);
+    scoreboard.replaceChild(newElement, element);
 };
